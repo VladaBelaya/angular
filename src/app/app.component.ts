@@ -8,14 +8,17 @@ import {ProductsService} from "./services/products.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'my first angular project';
+  title = 'my first angular project'
   products: IProduct[] = []
+  loading = false
 
   constructor(private ProductsService: ProductsService) {
   }
   ngOnInit(): void {
+    this.loading = true
     this.ProductsService.getAll().subscribe(products => {
       this.products = products
+      this.loading = false
     })
   }
 }
